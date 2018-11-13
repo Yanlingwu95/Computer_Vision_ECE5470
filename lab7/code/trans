@@ -1,0 +1,29 @@
+#!/bin/sh
+# script to process the pictures to get the data set
+#i Syntax:  trans <image-file>
+## Returns: the processed images in <image-file>.vx
+for i in 1 2 3 4 5
+do
+	fname=$1.$i.PNG
+	oname=$fname.vx
+	tmp=tmp.$$.vx
+	tmp2=tmp.$$_th.vx
+	tmp3=tmp2.$$_20.vx
+	if [ "$#" != "1" ]
+	then
+	echo "Error: a single file name argument is required"
+	exit
+	fi
+
+	rm -f $oname
+	vfmt -g -vx if=$fname of=$tmp
+	vits th=100 if=$tmp of=$tmp2
+	vimag s=20,20,1 if=$tmp2 of=$tmp3
+	vits th=175 if=$tmp3 of=$tmp
+	vpix -neg if=$tmp of=$tmp2
+	com if=$tmp2 of=$tmp3
+	vxport -png if=$tmp3 of=$oname
+	rm -f $tmp
+	rm -f $tmp2
+	rm -f $tmp3
+done
