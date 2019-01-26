@@ -1,0 +1,1000 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{LAB7\_PartB}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \#
+
+LAB 7: Machine Learning using the Scikit-learn and the MNIST dataset
+
+\#\#
+
+Part B Experiments with Classifiers
+
+\#
+
+Yanling Wu
+
+\#
+
+yw996
+
+\subsection{\texorpdfstring{\textbf{1: K-Neraest-Neighbor
+(KNN)}}{1: K-Neraest-Neighbor (KNN)}}\label{k-neraest-neighbor-knn}
+
+In this section, we will evaluate KNN classifier performance and explore
+how to improve its performance.
+
+\subsubsection{Different Size of
+Dataset}\label{different-size-of-dataset}
+
+In order to control the computing time with 10 minutes, I tried to use
+\emph{StandardScaler} to standardlize the dataset, it did decrease the
+computing time, but the prediction accuracy decreased more. Hence, I
+chose to narrow the size of dataset and tried different sizes of
+training set and test set and we need to take the running time and
+predicted accuracy into consideration. Intuitively, decreasing the size
+of training dataset will lead to the decrease of prediction accuracy.
+Shown as below figures, we can see the prediction score increasd as the
+datasize increases.
+
+After several attempt, I set the training set to 40,000 and the test set
+to 6,000, which can guarantee the running time with 10 minutes and the
+accuracy is not that low.
+
+\begin{verbatim}
+<img src="./pic/1w_2k_3nn.png" width="30%" height="30%" />  
+Figure 1.  10k training dataset and 2k test dataset
+<img src="./pic/2w_4k_3nn.png" width="30%" height="30%" />
+Figure 2.20k training dataset and 4k test dataset
+<img src="./pic/3w_6k_3nn.png" width="30%" height="30%" />
+Figure 3.  30k training dataset and 6k test dataset
+<img src="./pic/4w_6k_3nn.png" width="30%" height="30%" />
+Figure 4.  40k training dataset and 6k test dataset
+\end{verbatim}
+
+\subsubsection{Different Number of Near
+Neighbor}\label{different-number-of-near-neighbor}
+
+Next, I tried different number of near neighbors from 1 to 5. The
+following figure shows the result. Compared 1NN with 3NN, the accuracy
+of 1NN is bigger than that of 3NN. And the change trend from 1 to 5 near
+neighbors is down, up and down. The good amount of near neighbors is one
+or four. But there are higher possibility for 1NN to overfit the data
+since it needs to consider all of the near neighbors during fitting the
+model.
+
+\\
+Figure 5. The result of different number of near neighboring
+
+\subsection{\texorpdfstring{\textbf{2: Multi-Layer Perceptron
+(MLP)}}{2: Multi-Layer Perceptron (MLP)}}\label{multi-layer-perceptron-mlp}
+
+In this section, we used the MLP classifier to recognize the digits and
+compared the results of model with one MLP layer to that of model with
+two MLP layers. I ran the program in Google Colaboratory whose
+computation speed is very fast. So I used all minist dataset whose total
+amount is 70,000 and 10,000 of them are as test set. In order to optimal
+the MLP classifier to get the better score of prediction, we need to
+change some vital parameters of MLPClassifier including
+\emph{learning\_rate\_init, max\_iter, alpha, tol, alpha, solver}.
+
+Specificly, the parameter of \emph{learning\_rate\_init} will control
+the size of every step to calculate, which can affect the score of
+prediction hugely and I changed this parameters to 0.0001. Besides, the
+parameter of \emph{max\_iter} will decide the number of epoches and the
+times of iterations and will influence the length of calculation. Since
+we need to control the length of computation of this program within 10
+minutes, I changed it to 300 steps. Additionally, the parameter of
+\emph{tol} will give a criterion to end the calculation and
+optimization, meaning that when the decreasing value of the loss between
+every calculation is more than value of \emph{tol}, the training will be
+ended. The parameter of \emph{solver} will decide what mathematic
+function and method will be used to train the classifier.
+
+\subsubsection{MLP Classifier with One
+Layer}\label{mlp-classifier-with-one-layer}
+
+After every iteration, the loss will decrease and I set the number of
+iteration to 300 and we can see the loss value of last iteration have
+already decreased to 0.097 and taining time is 372 seconds. The score of
+prediction of training set is 0.9709 and the score of predicting of test
+set is 0.9445. This result is not bad.
+
+\\
+Figure 6.the Result of MLP Classifier with One Layer
+
+\subsubsection{MLP Classifier with two
+Layers}\label{mlp-classifier-with-two-layers}
+
+In this step, we add one more layer to recognize the digits and try to
+get better score of prediction. It took 453 seconds to iterate 300 times
+to calculate two layers model and the loss value of last iteration have
+declined to 0.067 and the score of prediction of training set is
+0.981467 and the score of predicting of test set is 0.9457, which is
+better than the one layer model, especially the socre of training set.
+
+\\
+Figure 7.the Result of MLP Classifier with One Layer
+
+\subsection{\texorpdfstring{\textbf{3: Support Vector Machine
+(SVM)}}{3: Support Vector Machine (SVM)}}\label{support-vector-machine-svm}
+
+Support vector machines are supervised learning models with associated
+learning algorithms that analyze data used for classification and
+regression analysis.And we could choose different kernel of classifiers
+to improve the performance of it. Besides linear classificaiton, there
+are several non-linear classification method.
+
+In this section, we will apply three kinds of classifiers and compare
+their performances and control their running time with 10 minutes.
+
+\paragraph{SVM with a linear funciton}\label{svm-with-a-linear-funciton}
+
+We tried to build a SVM Classifiers with a linear function using 30,000
+training data and 6000 test data.Training time is 308.556 seconds and
+the accuracy is 0.9038, which is not so high.
+
+\\
+Figure 8.the Result of SVM Classifier with Linear function
+
+\paragraph{SVM with a polynomial
+funciton}\label{svm-with-a-polynomial-funciton}
+
+We tried to build a SVM Classifiers with a polynomial function using
+30,000 training data and 6000 test data. Training time is 177.658
+seconds and the accuracy is 0.971667, which is far higher than that of
+classifier with a linear function.
+
+\\
+Figure 9.the Result of SVM Classifier with Polynomial function
+
+\paragraph{SVM with radial basis
+function}\label{svm-with-radial-basis-function}
+
+We tried to build a SVM Classifiers with a polynomial function using
+40,000 training data and 6000 test data. Training time is 372.252
+seconds and the accuracy is 0.93133, which is far higher than that of
+classifier with a linear function.
+
+I also found two interesting things. One is that the realtionship
+between the size of dataset and the length of running time is noe linear
+and more like exponential function. Another is that the radial basis
+function is very sensitive to standarlization of dataset. If there is no
+syntax like \emph{X /= 255.} , this \emph{rbf} kernel will give very bad
+prediction and the score will only be 0.11.
+
+\\
+Figure 10.the Result of SVM Classifier with radial basis function
+
+\paragraph{Reminder: There might be no output results in below cell,
+this is becasue I ran these code in different file and copied codes
+together.}\label{reminder-there-might-be-no-output-results-in-below-cell-this-is-becasue-i-ran-these-code-in-different-file-and-copied-codes-together.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{}import libraries}
+        
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{io}
+        \PY{k+kn}{import} \PY{n+nn}{time}
+        \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{io}\PY{n+nn}{.}\PY{n+nn}{arff} \PY{k}{import} \PY{n}{loadarff}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{datasets} \PY{k}{import} \PY{n}{get\PYZus{}data\PYZus{}home}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{externals}\PY{n+nn}{.}\PY{n+nn}{joblib} \PY{k}{import} \PY{n}{Memory}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{neural\PYZus{}network} \PY{k}{import} \PY{n}{MLPClassifier}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{neighbors} \PY{k}{import} \PY{n}{KNeighborsClassifier}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{StandardScaler}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{}Read the dataset}
+        \PY{k}{try}\PY{p}{:}
+            \PY{k+kn}{from} \PY{n+nn}{urllib}\PY{n+nn}{.}\PY{n+nn}{request} \PY{k}{import} \PY{n}{urlopen}
+        \PY{k}{except} \PY{n+ne}{ImportError}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{} Python 2}
+            \PY{k+kn}{from} \PY{n+nn}{urllib2} \PY{k}{import} \PY{n}{urlopen}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n+nv+vm}{\PYZus{}\PYZus{}doc\PYZus{}\PYZus{}}\PY{p}{)}
+        
+        \PY{n}{memory} \PY{o}{=} \PY{n}{Memory}\PY{p}{(}\PY{n}{get\PYZus{}data\PYZus{}home}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        
+        
+        \PY{n+nd}{@memory}\PY{o}{.}\PY{n}{cache}\PY{p}{(}\PY{p}{)}
+        \PY{k}{def} \PY{n+nf}{fetch\PYZus{}mnist}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{n}{content} \PY{o}{=} \PY{n}{urlopen}\PY{p}{(}
+                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://www.openml.org/data/download/52667/mnist\PYZus{}784.arff}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}
+            \PY{n}{data}\PY{p}{,} \PY{n}{meta} \PY{o}{=} \PY{n}{loadarff}\PY{p}{(}\PY{n}{io}\PY{o}{.}\PY{n}{StringIO}\PY{p}{(}\PY{n}{content}\PY{o}{.}\PY{n}{decode}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{utf8}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{n}{data} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{view}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pixels}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}f8}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{784}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{class}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{|S1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+            \PY{k}{return} \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pixels}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{class}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{n}{X}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{fetch\PYZus{}mnist}\PY{p}{(}\PY{p}{)}
+        \PY{n}{X} \PY{o}{/}\PY{o}{=} \PY{l+m+mf}{255.}
+        \PY{c+c1}{\PYZsh{} rescale the data, use the traditional train/test split}
+        \PY{c+c1}{\PYZsh{}the size of train set is 60k and the size of test size is 10k}
+        \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{40000}\PY{p}{]}\PY{p}{,} \PY{n}{X}\PY{p}{[}\PY{l+m+mi}{40000}\PY{p}{:}\PY{l+m+mi}{46000}\PY{p}{]}
+        \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{y}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{40000}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{p}{[}\PY{l+m+mi}{40000}\PY{p}{:}\PY{l+m+mi}{46000}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Automatically created module for IPython interactive environment
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{c+c1}{\PYZsh{}Evaluate a K\PYZhy{}NN classifier}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{:}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{The number of neighbors is }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{i}\PY{p}{)}
+          \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}Classifier Declaration}
+          \PY{n}{KNN} \PY{o}{=} \PY{n}{KNeighborsClassifier}\PY{p}{(}\PY{n}{n\PYZus{}neighbors}\PY{o}{=}\PY{n}{i}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}Train the classifier}
+          \PY{n}{KNN}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{)}
+          \PY{n}{train\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
+          \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{     Training time }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{train\PYZus{}time}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}Evaluate the result}
+          \PY{n}{score} \PY{o}{=} \PY{n}{KNN}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,}\PY{n}{y\PYZus{}test}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{     Test score with }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{NN is: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{score}\PY{p}{)}\PY{p}{)}
+          \PY{n}{test\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{     Test time }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{test\PYZus{}time}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{     Test score with }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s2}{NN is: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{i}\PY{p}{,}\PY{n}{score}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The number of neighbors is 1: 
+     Training time 23.620 seconds
+     Test score with 1NN is: 0.9682
+     Test time 407.259 seconds
+     Test score with 1NN is: 0.9682
+The number of neighbors is 2: 
+     Training time 23.884 seconds
+     Test score with 2NN is: 0.9620
+     Test time 407.892 seconds
+     Test score with 2NN is: 0.9620
+The number of neighbors is 3: 
+     Training time 23.654 seconds
+     Test score with 3NN is: 0.9662
+     Test time 457.245 seconds
+     Test score with 3NN is: 0.9662
+The number of neighbors is 4: 
+     Training time 23.705 seconds
+     Test score with 4NN is: 0.9667
+     Test time 421.913 seconds
+     Test score with 4NN is: 0.9667
+The number of neighbors is 5: 
+     Training time 23.669 seconds
+     Test score with 5NN is: 0.9663
+     Test time 406.560 seconds
+     Test score with 5NN is: 0.9663
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}  Multi\PYZhy{}layer perceptron Classifier}
+        \PY{c+c1}{\PYZsh{}}
+        \PY{c+c1}{\PYZsh{} Single hidden layer}
+        \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{n}{mlp} \PY{o}{=} \PY{n}{MLPClassifier}\PY{p}{(}\PY{n}{hidden\PYZus{}layer\PYZus{}sizes}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{50}\PY{p}{,}\PY{p}{)}\PY{p}{,} \PY{n}{max\PYZus{}iter}\PY{o}{=}\PY{l+m+mi}{300}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}5}\PY{p}{,}
+                            \PY{n}{solver}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sgd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{tol}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}5}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}
+                            \PY{n}{learning\PYZus{}rate\PYZus{}init}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{0001}\PY{p}{)}
+        
+        \PY{n}{mlp}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+        \PY{n}{train\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{    Training time }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{train\PYZus{}time}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Training set score: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{mlp}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}\PY{p}{)}
+        \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Test set score: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{mlp}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}\PY{p}{)}
+        \PY{n}{test\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{    Test time }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{test\PYZus{}time}\PY{p}{)}
+        
+        \PY{n}{fig}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} use global min / max to ensure all weights are shown on the same scale}
+        \PY{n}{vmin}\PY{p}{,} \PY{n}{vmax} \PY{o}{=} \PY{n}{mlp}\PY{o}{.}\PY{n}{coefs\PYZus{}}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{mlp}\PY{o}{.}\PY{n}{coefs\PYZus{}}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+        \PY{k}{for} \PY{n}{coef}\PY{p}{,} \PY{n}{ax} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{mlp}\PY{o}{.}\PY{n}{coefs\PYZus{}}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{axes}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+            \PY{n}{ax}\PY{o}{.}\PY{n}{matshow}\PY{p}{(}\PY{n}{coef}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{28}\PY{p}{,} \PY{l+m+mi}{28}\PY{p}{)}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{cm}\PY{o}{.}\PY{n}{gray}\PY{p}{,} \PY{n}{vmin}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{5} \PY{o}{*} \PY{n}{vmin}\PY{p}{,}
+                       \PY{n}{vmax}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{5} \PY{o}{*} \PY{n}{vmax}\PY{p}{)}
+            \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xticks}\PY{p}{(}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+            \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}yticks}\PY{p}{(}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Iteration 1, loss = 2.31873444
+Iteration 2, loss = 1.15623711
+Iteration 3, loss = 0.90721258
+Iteration 4, loss = 0.78289191
+Iteration 5, loss = 0.70110037
+Iteration 6, loss = 0.63781107
+Iteration 7, loss = 0.59398188
+Iteration 8, loss = 0.55855692
+Iteration 9, loss = 0.52846498
+Iteration 10, loss = 0.50488183
+Iteration 11, loss = 0.48572582
+Iteration 12, loss = 0.46790671
+Iteration 13, loss = 0.45218744
+Iteration 14, loss = 0.43800788
+Iteration 15, loss = 0.42549022
+Iteration 16, loss = 0.41308816
+Iteration 17, loss = 0.40090918
+Iteration 18, loss = 0.39053311
+Iteration 19, loss = 0.37950472
+Iteration 20, loss = 0.36989921
+Iteration 21, loss = 0.36159076
+Iteration 22, loss = 0.35360963
+Iteration 23, loss = 0.34535371
+Iteration 24, loss = 0.33673483
+Iteration 25, loss = 0.32996003
+Iteration 26, loss = 0.32164059
+Iteration 27, loss = 0.31491139
+Iteration 28, loss = 0.30793868
+Iteration 29, loss = 0.30128505
+Iteration 30, loss = 0.29551798
+Iteration 31, loss = 0.29047461
+Iteration 32, loss = 0.28619027
+Iteration 33, loss = 0.28160394
+Iteration 34, loss = 0.27757461
+Iteration 35, loss = 0.27388301
+Iteration 36, loss = 0.26995744
+Iteration 37, loss = 0.26681359
+Iteration 38, loss = 0.26371218
+Iteration 39, loss = 0.26014049
+Iteration 40, loss = 0.25740091
+Iteration 41, loss = 0.25465179
+Iteration 42, loss = 0.25163958
+Iteration 43, loss = 0.24888187
+Iteration 44, loss = 0.24654647
+Iteration 45, loss = 0.24332008
+Iteration 46, loss = 0.24069375
+Iteration 47, loss = 0.23858355
+Iteration 48, loss = 0.23568965
+Iteration 49, loss = 0.23326901
+Iteration 50, loss = 0.23102953
+Iteration 51, loss = 0.22862093
+Iteration 52, loss = 0.22654744
+Iteration 53, loss = 0.22405408
+Iteration 54, loss = 0.22240206
+Iteration 55, loss = 0.21964725
+Iteration 56, loss = 0.21734006
+Iteration 57, loss = 0.21593882
+Iteration 58, loss = 0.21356789
+Iteration 59, loss = 0.21122427
+Iteration 60, loss = 0.20986988
+Iteration 61, loss = 0.20753796
+Iteration 62, loss = 0.20552051
+Iteration 63, loss = 0.20387871
+Iteration 64, loss = 0.20274987
+Iteration 65, loss = 0.20059544
+Iteration 66, loss = 0.19914538
+Iteration 67, loss = 0.19753161
+Iteration 68, loss = 0.19604687
+Iteration 69, loss = 0.19466012
+Iteration 70, loss = 0.19347300
+Iteration 71, loss = 0.19239917
+Iteration 72, loss = 0.19083935
+Iteration 73, loss = 0.18978491
+Iteration 74, loss = 0.18869764
+Iteration 75, loss = 0.18729116
+Iteration 76, loss = 0.18639925
+Iteration 77, loss = 0.18519216
+Iteration 78, loss = 0.18374924
+Iteration 79, loss = 0.18321397
+Iteration 80, loss = 0.18150545
+Iteration 81, loss = 0.18090267
+Iteration 82, loss = 0.17938187
+Iteration 83, loss = 0.17864592
+Iteration 84, loss = 0.17723672
+Iteration 85, loss = 0.17687366
+Iteration 86, loss = 0.17565105
+Iteration 87, loss = 0.17473061
+Iteration 88, loss = 0.17402527
+Iteration 89, loss = 0.17294163
+Iteration 90, loss = 0.17243182
+Iteration 91, loss = 0.17154515
+Iteration 92, loss = 0.17099145
+Iteration 93, loss = 0.16996444
+Iteration 94, loss = 0.16914097
+Iteration 95, loss = 0.16855611
+Iteration 96, loss = 0.16781354
+Iteration 97, loss = 0.16723710
+Iteration 98, loss = 0.16641741
+Iteration 99, loss = 0.16550781
+Iteration 100, loss = 0.16494696
+Iteration 101, loss = 0.16391333
+Iteration 102, loss = 0.16285748
+Iteration 103, loss = 0.16240395
+Iteration 104, loss = 0.16193133
+Iteration 105, loss = 0.16130471
+Iteration 106, loss = 0.16059459
+Iteration 107, loss = 0.15960714
+Iteration 108, loss = 0.15919719
+Iteration 109, loss = 0.15838710
+Iteration 110, loss = 0.15843687
+Iteration 111, loss = 0.15755216
+Iteration 112, loss = 0.15665204
+Iteration 113, loss = 0.15637297
+Iteration 114, loss = 0.15538610
+Iteration 115, loss = 0.15523950
+Iteration 116, loss = 0.15458034
+Iteration 117, loss = 0.15396650
+Iteration 118, loss = 0.15348568
+Iteration 119, loss = 0.15316056
+Iteration 120, loss = 0.15267678
+Iteration 121, loss = 0.15196448
+Iteration 122, loss = 0.15140381
+Iteration 123, loss = 0.15066570
+Iteration 124, loss = 0.15044067
+Iteration 125, loss = 0.14993841
+Iteration 126, loss = 0.14935365
+Iteration 127, loss = 0.14863132
+Iteration 128, loss = 0.14849108
+Iteration 129, loss = 0.14854981
+Iteration 130, loss = 0.14746038
+Iteration 131, loss = 0.14734307
+Iteration 132, loss = 0.14678454
+Iteration 133, loss = 0.14616585
+Iteration 134, loss = 0.14544773
+Iteration 135, loss = 0.14509118
+Iteration 136, loss = 0.14499581
+Iteration 137, loss = 0.14438060
+Iteration 138, loss = 0.14394391
+Iteration 139, loss = 0.14375013
+Iteration 140, loss = 0.14296720
+Iteration 141, loss = 0.14314319
+Iteration 142, loss = 0.14256443
+Iteration 143, loss = 0.14179873
+Iteration 144, loss = 0.14133943
+Iteration 145, loss = 0.14110915
+Iteration 146, loss = 0.14115561
+Iteration 147, loss = 0.14044585
+Iteration 148, loss = 0.14001760
+Iteration 149, loss = 0.13938400
+Iteration 150, loss = 0.13901351
+Iteration 151, loss = 0.13873104
+Iteration 152, loss = 0.13859187
+Iteration 153, loss = 0.13809624
+Iteration 154, loss = 0.13754044
+Iteration 155, loss = 0.13711536
+Iteration 156, loss = 0.13676482
+Iteration 157, loss = 0.13655506
+Iteration 158, loss = 0.13622600
+Iteration 159, loss = 0.13579527
+Iteration 160, loss = 0.13538972
+Iteration 161, loss = 0.13490434
+Iteration 162, loss = 0.13452621
+Iteration 163, loss = 0.13437402
+Iteration 164, loss = 0.13399865
+Iteration 165, loss = 0.13358385
+Iteration 166, loss = 0.13306798
+Iteration 167, loss = 0.13252260
+Iteration 168, loss = 0.13214522
+Iteration 169, loss = 0.13203767
+Iteration 170, loss = 0.13189212
+Iteration 171, loss = 0.13129969
+Iteration 172, loss = 0.13070261
+Iteration 173, loss = 0.13037170
+Iteration 174, loss = 0.13038073
+Iteration 175, loss = 0.13022410
+Iteration 176, loss = 0.12958255
+Iteration 177, loss = 0.12938374
+Iteration 178, loss = 0.12915958
+Iteration 179, loss = 0.12853625
+Iteration 180, loss = 0.12764193
+Iteration 181, loss = 0.12798824
+Iteration 182, loss = 0.12729224
+Iteration 183, loss = 0.12690774
+Iteration 184, loss = 0.12693984
+Iteration 185, loss = 0.12600704
+Iteration 186, loss = 0.12600159
+Iteration 187, loss = 0.12549985
+Iteration 188, loss = 0.12552274
+Iteration 189, loss = 0.12473630
+Iteration 190, loss = 0.12456259
+Iteration 191, loss = 0.12417117
+Iteration 192, loss = 0.12389621
+Iteration 193, loss = 0.12363118
+Iteration 194, loss = 0.12333332
+Iteration 195, loss = 0.12305087
+Iteration 196, loss = 0.12265024
+Iteration 197, loss = 0.12248247
+Iteration 198, loss = 0.12203635
+Iteration 199, loss = 0.12202520
+Iteration 200, loss = 0.12152678
+Iteration 201, loss = 0.12114582
+Iteration 202, loss = 0.12109901
+Iteration 203, loss = 0.12044461
+Iteration 204, loss = 0.12025410
+Iteration 205, loss = 0.11976158
+Iteration 206, loss = 0.11974289
+Iteration 207, loss = 0.11941659
+Iteration 208, loss = 0.11929975
+Iteration 209, loss = 0.11892507
+Iteration 210, loss = 0.11832592
+Iteration 211, loss = 0.11831234
+Iteration 212, loss = 0.11815542
+Iteration 213, loss = 0.11769222
+Iteration 214, loss = 0.11747328
+Iteration 215, loss = 0.11707318
+Iteration 216, loss = 0.11687918
+Iteration 217, loss = 0.11644429
+Iteration 218, loss = 0.11629496
+Iteration 219, loss = 0.11600984
+Iteration 220, loss = 0.11565793
+Iteration 221, loss = 0.11558371
+Iteration 222, loss = 0.11531771
+Iteration 223, loss = 0.11540476
+Iteration 224, loss = 0.11455055
+Iteration 225, loss = 0.11435280
+Iteration 226, loss = 0.11391935
+Iteration 227, loss = 0.11359069
+Iteration 228, loss = 0.11346089
+Iteration 229, loss = 0.11309546
+Iteration 230, loss = 0.11277466
+Iteration 231, loss = 0.11266508
+Iteration 232, loss = 0.11236592
+Iteration 233, loss = 0.11181770
+Iteration 234, loss = 0.11194775
+Iteration 235, loss = 0.11155141
+Iteration 236, loss = 0.11148631
+Iteration 237, loss = 0.11086880
+Iteration 238, loss = 0.11048006
+Iteration 239, loss = 0.11048949
+Iteration 240, loss = 0.11011562
+Iteration 241, loss = 0.10992562
+Iteration 242, loss = 0.10982629
+Iteration 243, loss = 0.10897588
+Iteration 244, loss = 0.10913553
+Iteration 245, loss = 0.10881733
+Iteration 246, loss = 0.10843473
+Iteration 247, loss = 0.10847295
+Iteration 248, loss = 0.10839309
+Iteration 249, loss = 0.10837179
+Iteration 250, loss = 0.10761648
+Iteration 251, loss = 0.10743634
+Iteration 252, loss = 0.10747278
+Iteration 253, loss = 0.10677149
+Iteration 254, loss = 0.10662121
+Iteration 255, loss = 0.10653065
+Iteration 256, loss = 0.10610956
+Iteration 257, loss = 0.10605380
+Iteration 258, loss = 0.10553833
+Iteration 259, loss = 0.10547874
+Iteration 260, loss = 0.10547655
+Iteration 261, loss = 0.10493371
+Iteration 262, loss = 0.10464989
+Iteration 263, loss = 0.10491113
+Iteration 264, loss = 0.10463297
+Iteration 265, loss = 0.10437494
+Iteration 266, loss = 0.10384280
+Iteration 267, loss = 0.10419341
+Iteration 268, loss = 0.10374185
+Iteration 269, loss = 0.10363650
+Iteration 270, loss = 0.10304112
+Iteration 271, loss = 0.10307877
+Iteration 272, loss = 0.10299605
+Iteration 273, loss = 0.10272854
+Iteration 274, loss = 0.10247484
+Iteration 275, loss = 0.10203062
+Iteration 276, loss = 0.10214378
+Iteration 277, loss = 0.10177714
+Iteration 278, loss = 0.10178876
+Iteration 279, loss = 0.10145863
+Iteration 280, loss = 0.10115999
+Iteration 281, loss = 0.10089446
+Iteration 282, loss = 0.10091111
+Iteration 283, loss = 0.10087082
+Iteration 284, loss = 0.10035896
+Iteration 285, loss = 0.10033624
+Iteration 286, loss = 0.10046364
+Iteration 287, loss = 0.10016383
+Iteration 288, loss = 0.09995543
+Iteration 289, loss = 0.09973476
+Iteration 290, loss = 0.09943315
+Iteration 291, loss = 0.09912233
+Iteration 292, loss = 0.09911057
+Iteration 293, loss = 0.09901436
+Iteration 294, loss = 0.09876133
+Iteration 295, loss = 0.09853774
+Iteration 296, loss = 0.09865721
+Iteration 297, loss = 0.09831805
+Iteration 298, loss = 0.09819467
+Iteration 299, loss = 0.09787703
+Iteration 300, loss = 0.09790995
+    Training time 372.610 seconds
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/usr/local/lib/python3.6/dist-packages/sklearn/neural\_network/multilayer\_perceptron.py:564: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (300) reached and the optimization hasn't converged yet.
+  \% self.max\_iter, ConvergenceWarning)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Training set score: 0.970900
+Test set score: 0.944500
+    Test time 0.075 seconds
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}  Multi\PYZhy{}layer perceptron Classifier}
+        \PY{c+c1}{\PYZsh{}}
+        \PY{c+c1}{\PYZsh{} Two hidden layers}
+        \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Two hidden layers, each has 50 elements}
+        \PY{n}{mlp\PYZus{}2} \PY{o}{=} \PY{n}{MLPClassifier}\PY{p}{(}\PY{n}{hidden\PYZus{}layer\PYZus{}sizes}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{50}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,} \PY{n}{max\PYZus{}iter}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}4}\PY{p}{,}
+                            \PY{n}{solver}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sgd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{tol}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}4}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}
+                            \PY{n}{learning\PYZus{}rate\PYZus{}init}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{n}{mlp}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+        \PY{n}{train\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{    Training time }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{train\PYZus{}time}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Training set score: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{mlp\PYZus{}2}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}\PY{p}{)}
+        \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Test set score: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{mlp\PYZus{}2}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}\PY{p}{)}
+        \PY{n}{test\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{    Test time }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{test\PYZus{}time}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}  Support Vector Nachine (SVM) Classifier}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Linear}
+        
+        \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}\PYZsh{} Linear}
+        \PY{n}{svc} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{SVC}\PY{p}{(}\PY{n}{kernel} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{linear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{C} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{n}{svc}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+        \PY{n}{train\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Linear SVM Training time }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{train\PYZus{}time}\PY{p}{)}
+        
+        \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{n}{score} \PY{o}{=} \PY{n}{svc}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Linear SVM Test set score: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{score}\PY{p}{)}
+        
+        \PY{n}{test\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Linear SVM Test time }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{test\PYZus{}time}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}  Support Vector Nachine (SVM) Classifier}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Poly}
+        \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} \PYZsh{}\PYZsh{} cubic polynomial}
+        \PY{n}{svc} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{SVC}\PY{p}{(}\PY{n}{kernel} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{poly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{degree} \PY{o}{=} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{C} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} \PYZsh{}\PYZsh{}}
+        \PY{c+c1}{\PYZsh{} \PYZsh{}\PYZsh{} Radial basis functions}
+        \PY{c+c1}{\PYZsh{} svc = svm.SVC(kernel = \PYZsq{}rbf\PYZsq{}, C = 2, gamma = 0.0005)}
+        
+        \PY{n}{svc}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+        \PY{n}{train\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ SVM Training time }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{train\PYZus{}time}\PY{p}{)}
+        
+        \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{n}{score} \PY{o}{=} \PY{n}{svc}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ SVM Test set score: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{score}\PY{p}{)}
+        
+        \PY{n}{test\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ SVM Test time }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{test\PYZus{}time}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}  Support Vector Nachine (SVM) Classifier}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} rbf}
+        \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}}
+        \PY{c+c1}{\PYZsh{} \PYZsh{}\PYZsh{} Radial basis functions}
+        \PY{n}{svc} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{SVC}\PY{p}{(}\PY{n}{kernel} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rbf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{C} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{gamma} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{svc}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+        \PY{n}{train\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rbf SVM Training time }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{train\PYZus{}time}\PY{p}{)}
+        
+        \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{n}{score} \PY{o}{=} \PY{n}{svc}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rbf SVM Test set score: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{score}\PY{p}{)}
+        
+        \PY{n}{test\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rbf SVM Test time }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{test\PYZus{}time}\PY{p}{)}
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
